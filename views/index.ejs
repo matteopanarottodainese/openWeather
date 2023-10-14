@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenWeather 2.0</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- <div class="section-img">
+      <img src="images/icon-weather.png" alt="icon-weather">
+    </div> -->
+
+    <div class="section-text">
+
+      <form id="myForm" method="post">
+        <input type="text" id="cityName" name="id" placeholder="Inserisci il nome di una città">
+        <input id="get" type="submit" value="Ottieni le previsioni" formaction="/" disabled>
+      </form>
+
+      <% if (locals.weather) { %>
+      <div class="first-module" id="jquery">
+        <div class="first-module-left">
+          <!-- city, country -->
+          <% if (locals.name && locals.country ) { %>
+            <p style="font-size: 14px; display: flex; align-items: center; opacity: 0.8;">
+              <img style="height: 14px; margin-right: 6px;" src="images/navigation.png">
+              <%= name %>, <%= country.country %>
+            </p>
+          <% } %>
+          <!-- current temperature -->
+          <% if (locals.main) { %>
+            <h2 style="font-size: 80px; font-weight: 500;"><%= Math.round(main.temp) %>°</h2>
+          <% } %>
+          <!-- weather conditions title -->
+          <% if (locals.weather) { %>
+            <p id="weather-description" style="font-size: 20px; font-weight: 400;"><%= weather.description %></p>
+            <p style="opacity: 0.8; font-size: 15px; padding-top: 5px;">Oggi <span id="currentYear"></span></p>
+          <% } %>
+        </div>
+        <div class="first-module-right">
+          <img src="https://openweathermap.org/img/wn/<%= weather.icon %>@2x.png" alt="icona <%= weather.description %>">
+        </div>
+      </div>
+      <% } %>
+
+      <% if (locals.main) { %>
+      <div class="light-section">
+        <div class="sub-light-section-top">
+          <!-- first row-->
+          <div class="grid-block">
+            <p style="padding-bottom: 5px;">Feels like</p>
+            <p style="font-size: 16px; font-weight: 600;"><%= Math.round(main.feels_like) %>°C</p>
+          </div>
+          <div class="grid-block">
+            <p style="padding-bottom: 5px;">Min temp.</p>
+            <p style="font-size: 16px; font-weight: 600;"><%= Math.round(main.temp_min) %>°C</p>
+          </div>
+          <div class="grid-block">
+            <p style="padding-bottom: 5px;">Max temp.</p>
+            <p style="font-size: 16px; font-weight: 600;"><%= Math.round(main.temp_max) %>°C</p>
+          </div>
+          <div class="grid-block">
+            <p style="padding-bottom: 5px;">Humidity</p>
+            <p style="font-size: 16px; font-weight: 600;"><%= main.humidity %>%</p>
+          </div>
+          
+          <!-- second row-->
+          <div class="grid-block">
+            <p style="padding-bottom: 5px;">Wind</p>
+            <p style="font-size: 16px; font-weight: 600;"><%= wind.speed %> m/s</p>
+          </div>
+          <div class="grid-block">
+            <p style="padding-bottom: 5px;">Wind dir.</p>
+            <p style="font-size: 16px; font-weight: 600;"><%= wind.deg %>°</p>
+          </div>
+          <div class="grid-block">
+            <p style="padding-bottom: 5px;">Pressure</p>
+            <p style="font-size: 16px; font-weight: 600;"><%= main.pressure %>hPa</p>
+          </div>
+          <div class="grid-block">
+            <p style="padding-bottom: 5px;">Cloudiness</p>
+            <p style="font-size: 16px; font-weight: 600;"><%= clouds %>%</p>
+          </div>
+        </div>
+      </div>
+      <% } %>
+
+    </div>
+
+  </div>
+
+  <script src="scripts/app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  
+</body>
+</html>
